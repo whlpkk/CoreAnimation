@@ -21,16 +21,16 @@
 /*
  fillMode:   
  
- 对于beginTime非0的一段动画来说，会出现一个当动画添加到图层上但什么也没发生的状态。类似的，removeOnCompletion被设置为NO的动画将会在动画结束的时候仍然保持之前的状态。这就产生了一个问题，当动画开始之前和动画结束之后，被设置动画的属性将会是什么值呢？
+ 对于beginTime非0的一段动画来说，会出现一个当动画添加到图层上但什么也没发生的状态。类似的，removedOnCompletion被设置为NO的动画将会在动画结束的时候仍然保持之前的状态。这就产生了一个问题，当动画开始之前和动画结束之后，被设置动画的属性将会是什么值呢？
  1). 一种可能是属性和动画没被添加之前保持一致，也就是在模型图层定义的值。
  2). 另一种可能是保持动画开始之前那一帧，或者动画结束之后的那一帧。这就是所谓的填充，因为动画开始和结束的值用来填充开始之前和结束之后的时间。
  这种行为就交给开发者了，它可以被CAMediaTiming的fillMode来控制。fillMode是一个NSString类型，可以接受如下四种常量：
- kCAFillModeForwards  //向后填充动画状态，removeOnCompletion被设置为NO的动画将会在动画结束的时候仍然保持之前的状态。
+ kCAFillModeForwards  //向后填充动画状态，removedOnCompletion被设置为NO的动画将会在动画结束的时候仍然保持状态。
  kCAFillModeBackwards //向前填充动画状态，即对于beginTime非0的一段动画来说，会立即变成动画将要执行的样子。
  kCAFillModeBoth      //即向前又向后去填充动画状态
  kCAFillModeRemoved   //默认为此值。 不填充，当动画不再播放的时候就显示图层模型指定的值
  默认是kCAFillModeRemoved，当动画不再播放的时候就显示图层模型指定的值剩下的三种类型向前，向后或者即向前又向后去填充动画状态，使得动画在开始前或者结束后仍然保持开始和结束那一刻的值。
- 但是记住了，当用它来解决这个问题的时候，需要把removeOnCompletion设置为NO，另外需要给动画添加一个非空的键，于是可以在不需要动画的时候把它从图层上移除。
+ 但是记住了，当用它来解决这个问题的时候，需要把removedOnCompletion设置为NO，另外需要给动画添加一个非空的键，于是可以在不需要动画的时候把它从图层上移除。
 */
 
 @interface SpeedViewController ()
